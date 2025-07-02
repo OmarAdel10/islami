@@ -1,8 +1,8 @@
 flutter_native_splash:
-  #color: "#42a5f5"
-  #image: assets/splash.png
-  #branding: assets/dart.png
-  #branding_bottom_padding: 24
+  color: "#202020"
+  image: assets/images/splash_logo2.png
+  branding: assets/images/branding.png
+  branding_bottom_padding: 24
 
   android_12:
 
@@ -13,7 +13,7 @@ flutter_native_splash:
     # 768 pixels in diameter.
 
 
-    #color: "#42a5f5"
-    #image: assets/android12splash.png
-    #branding: assets/dart.png
-    #branding_bottom_padding: 24
+    color: "#202020"
+    image: assets/images/android12splash.png
+    branding: assets/images/branding.png
+    branding_bottom_padding: 24
