@@ -25,19 +25,35 @@ class _HomeScreenState extends State<HomeScreen> {
     TimeTab(),
   ];
 
+  List<String> backgroundImages = [
+    'assets/images/quran_background.png',
+    'assets/images/hadith_background.png',
+    'assets/images/sebha_background.png',
+    'assets/images/radio_background.png',
+    'assets/images/time_background.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SafeArea(
-            child: Image.asset(
-              'assets/images/header.png',
-              height: MediaQuery.of(context).size.height * 0.17,
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(backgroundImages[_currentIndex]),
+            fit: BoxFit.fill,
           ),
-          tabs[_currentIndex],
-        ],
+        ),
+        child: Column(
+          children: [
+            SafeArea(
+              child: Image.asset(
+                'assets/images/header.png',
+                height: MediaQuery.of(context).size.height * 0.17,
+              ),
+            ),
+            tabs[_currentIndex],
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
