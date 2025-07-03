@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:islami/Screens/home/tabs/Quran/sura_details.dart';
+import 'package:islami/Screens/home/tabs/Quran/quran_details.dart';
 
 class SuraItem extends StatelessWidget {
   final int index;
@@ -15,11 +15,14 @@ class SuraItem extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              Text('${index + 1}', style: textTheme.titleLarge),
+              index >= 99 
+              ? Text('${index + 1}', style: textTheme.titleLarge!.copyWith(fontSize: 16))
+              : Text('${index + 1}', style: textTheme.titleLarge),
               Image.asset(
                 'assets/images/sura_number_frame.png',
                 width: 52,
                 height: 52,
+                fit: BoxFit.fill,
               ),
             ],
           ),
@@ -28,18 +31,18 @@ class SuraItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                SuraDetails.englishSuras[index],
+                QuranDetails.englishSuras[index],
                 style: textTheme.titleLarge,
               ),
               Text(
-                '${SuraDetails.ayatNumbers[index]} Verses',
+                '${QuranDetails.ayatNumbers[index]} Verses',
                 style: textTheme.titleSmall,
               ),
             ],
           ),
           Spacer(),
           Text(
-                SuraDetails.arabicSuras[index],
+                QuranDetails.arabicSuras[index],
                 style: textTheme.titleLarge,
               ),
         ],

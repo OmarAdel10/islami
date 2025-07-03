@@ -17,6 +17,8 @@ class AppTheme {
         fontSize: 20,
         fontWeight: FontWeight.w700,
       ),
+      centerTitle: true,
+      foregroundColor: primary,
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

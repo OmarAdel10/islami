@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islami/Screens/home/home_screen.dart';
+import 'package:islami/Screens/home/tabs/Quran/sura_details.dart';
 import 'package:islami/Screens/onboarding/onboarding_screen.dart';
 import 'package:islami/appTheme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.routeName: (_) => HomeScreen(),
         OnboardingScreen.routeName: (_) => OnboardingScreen(),
+        SuraDetails.routeName: (_) => SuraDetails(),
       },
       initialRoute: showHome ? HomeScreen.routeName : OnboardingScreen.routeName,
       theme: AppTheme.lightTheme,
