@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami/Screens/onboarding/onboarding.dart';
 import 'package:islami/appTheme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -114,7 +115,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
             _currentPage == onBoarding.images.length - 1
                 ? TextButton(
-                    onPressed: (){
+                    onPressed: () async{
+                      final prefs = await SharedPreferences.getInstance();
+                      await prefs.setBool('showHome', true);
                       Navigator.pushReplacementNamed(context, '/home');
                     },
                     child: Text(
