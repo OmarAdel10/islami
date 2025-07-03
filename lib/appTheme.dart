@@ -19,6 +19,18 @@ class AppTheme {
       ),
     ),
 
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: primary,
+      selectedItemColor: white,
+      unselectedItemColor: black,
+      selectedLabelStyle: TextStyle(
+        color: white,
+        fontSize: 12,
+        fontWeight: FontWeight.w700,
+      ),
+      showUnselectedLabels: false,
+    ),
+
     textTheme: TextTheme(
       headlineSmall: TextStyle(
         color: primary,
