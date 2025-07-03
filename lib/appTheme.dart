@@ -46,7 +46,7 @@ class AppTheme {
       ),
 
       titleMedium: TextStyle(
-        color: primary,
+        color: white,
         fontSize: 16,
         fontWeight: FontWeight.w700,
       ),

@@ -93,7 +93,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   },
                   child: Text(
                     'Back',
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: AppTheme.primary,
+                    ),
                   ),
                 ),
 
@@ -122,7 +124,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     },
                     child: Text(
                       'Finish',
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: AppTheme.primary,
+                      ),
                     ),
                   )
                 : TextButton(
@@ -134,7 +138,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               },
               child: Text(
                 'Next',
-                style: Theme.of(context).textTheme.titleMedium,
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  color: AppTheme.primary,
+                ),
               ),
             ),
           ],
