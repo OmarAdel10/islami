@@ -35,6 +35,12 @@ class AppTheme {
     ),
 
     textTheme: TextTheme(
+      displaySmall: TextStyle(
+        color: white,
+        fontSize: 36,
+        fontWeight: FontWeight.w700,
+      ),
+      
       headlineSmall: TextStyle(
         color: primary,
         fontSize: 24,
