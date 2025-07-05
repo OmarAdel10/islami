@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
@@ -42,6 +44,31 @@ class _SebhaTabState extends State<SebhaTab>
   int sebhaIndex = 0;
   int sebhaCount = 0;
 
+  late AnimationController _controller;
+  late Animation<double> _rotationAnimation;
+  double _rotationAngle = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+
+     _rotationAnimation = Tween<double>(begin: 0, end: 0).animate(
+    CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+  );
+
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -57,6 +84,9 @@ class _SebhaTabState extends State<SebhaTab>
         Center(
           child: GestureDetector(
             onTap: () {
+              final double previousAngle = _rotationAnimation.value;
+              final double newAngle = _rotationAngle + 2 * pi / 30;
+
               setState(() {
                 sebhaCount++;
                 counter++;
@@ -64,6 +94,16 @@ class _SebhaTabState extends State<SebhaTab>
                   sebhaCount = 0;
                   sebhaIndex = (sebhaIndex + 1) % sebhaTexts.length;
                 }
+
+                _rotationAnimation = Tween<double>(
+                  begin: _rotationAngle,
+                  end: newAngle,
+                ).animate(
+                  CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+                );
+
+                _rotationAngle = newAngle;
+                _controller.forward(from: 0);
               });
             },
             child: SizedBox(
@@ -80,7 +120,16 @@ class _SebhaTabState extends State<SebhaTab>
                       width: 86,
                     ),
                   ),
-                  Image.asset('assets/images/sebha_body.png'),
+                  AnimatedBuilder(
+                    animation: _rotationAnimation,
+                    builder: (context, child) {
+                      return Transform.rotate(
+                        angle: _rotationAnimation.value,
+                        child: child,
+                      );
+                    },
+                    child: Image.asset('assets/images/sebha_body.png'),
+                  ),
                   SizedBox(
                     width: size.width * 0.55,
                     child: Column(
