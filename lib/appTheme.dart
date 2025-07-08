@@ -34,13 +34,39 @@ class AppTheme {
       showUnselectedLabels: false,
     ),
 
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: black.withValues(alpha: 0.7),
+
+      hintStyle: TextStyle(
+        color: white.withValues(alpha: 0.7),
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+      ),
+
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: primary, width: 1),
+      ),
+
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: primary, width: 1),
+      ),
+
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: primary, width: 1),
+      ),
+    ),
+
     textTheme: TextTheme(
       displaySmall: TextStyle(
         color: white,
         fontSize: 36,
         fontWeight: FontWeight.w700,
       ),
-      
+
       headlineSmall: TextStyle(
         color: primary,
         fontSize: 24,

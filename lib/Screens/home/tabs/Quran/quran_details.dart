@@ -1,3 +1,4 @@
+
 class QuranDetails {
   static List<String> arabicSuras = [
     "الفاتحه",
@@ -113,7 +114,7 @@ class QuranDetails {
     "المسد",
     "الإخلاص",
     "الفلق",
-    "الناس"
+    "الناس",
   ];
 
   static List<String> englishSuras = [
@@ -230,7 +231,7 @@ class QuranDetails {
     "Al-Masad",
     "Al-Ikhlas",
     "Al-Falaq",
-    "An-Nas"
+    "An-Nas",
   ];
 
   static List<String> ayatNumbers = [
@@ -347,6 +348,8 @@ class QuranDetails {
     '5',
     '4',
     '5',
-    '6'
+    '6',
   ];
+
+
 }
