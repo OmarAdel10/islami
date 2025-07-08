@@ -31,6 +31,7 @@ class QuranTab extends StatelessWidget {
                       arguments: {
                         'english' : QuranDetails.englishSuras[index],
                         'arabic' : QuranDetails.arabicSuras[index],
+                        'index' : index,
                       },
                     );
                   },
