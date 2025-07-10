@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:islami/Screens/home/tabs/Quran/items/most_recently_item.dart';
+
+class MostRecentlySection extends StatefulWidget {
+  const MostRecentlySection({super.key});
+
+  @override
+  State<MostRecentlySection> createState() => _MostRecentlySectionState();
+}
+
+class _MostRecentlySectionState extends State<MostRecentlySection> {
+  @override
+  Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    Size size = MediaQuery.sizeOf(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 20, bottom: 10, left: 20),
+          child: Text('Most Recently', style: textTheme.titleMedium),
+        ),
+        SizedBox(
+          height: size.height * 0.15,
+          child: ListView.separated(
+            padding: EdgeInsets.only(left: 20),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (_, index) => MostRecentlyItem(),
+            separatorBuilder: (_, __) => SizedBox(width: 10),
+            itemCount: 10,
+          ),
+        ),
+      ],
+    );
+  }
+}

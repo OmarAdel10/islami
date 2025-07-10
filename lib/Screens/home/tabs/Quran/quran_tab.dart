@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:islami/Screens/home/tabs/Quran/most_recently_section.dart';
 import 'package:islami/Screens/home/tabs/Quran/quran_details.dart';
 import 'package:islami/Screens/home/tabs/Quran/sura_details.dart';
-import 'package:islami/Screens/home/tabs/Quran/sura_item.dart';
+import 'package:islami/Screens/home/tabs/Quran/items/sura_item.dart';
 import 'package:islami/appTheme.dart';
 
 class QuranTab extends StatefulWidget {
@@ -63,7 +64,7 @@ class _QuranTabState extends State<QuranTab> {
             },
           ),
         ),
-
+        MostRecentlySection(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Text(
