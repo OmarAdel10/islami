@@ -5,8 +5,21 @@ import 'package:islami/Screens/home/tabs/Quran/quran_details.dart';
 import 'package:islami/Screens/home/tabs/Quran/sura_details.dart';
 import 'package:islami/Screens/home/tabs/Quran/items/sura_item.dart';
 import 'package:islami/appTheme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuranTab extends StatefulWidget {
+  static List<int> recentIndexes = [];
+
+  static Future<void> getMostRecently() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? mostRecentlyIndexes = prefs.getStringList(
+      'mostRecentlyIndexes',
+    );
+    if (mostRecentlyIndexes == null) return;
+    QuranTab.recentIndexes =
+        mostRecentlyIndexes.map((indx) => int.parse(indx)).toList();
+  }
+
   @override
   State<QuranTab> createState() => _QuranTabState();
 }
@@ -50,7 +63,9 @@ class _QuranTabState extends State<QuranTab> {
 
                 for (int i = 0; i < QuranDetails.arabicSuras.length; i++) {
                   if (QuranDetails.arabicSuras[i].contains(query) ||
-                      QuranDetails.englishSuras[i].toLowerCase().contains(query.toLowerCase())) {
+                      QuranDetails.englishSuras[i].toLowerCase().contains(
+                        query.toLowerCase(),
+                      )) {
                     matchingIndexes.add(i);
                   }
                 }
@@ -64,7 +79,7 @@ class _QuranTabState extends State<QuranTab> {
             },
           ),
         ),
-        MostRecentlySection(),
+        MostRecentlySection(recentIndexes: QuranTab.recentIndexes),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Text(
@@ -79,8 +94,8 @@ class _QuranTabState extends State<QuranTab> {
             itemBuilder: (_, index) {
               int currentIndex = matchingIndexes[index];
               return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed(
+                onTap: () async {
+                  await Navigator.of(context).pushNamed(
                     SuraDetails.routeName,
                     arguments: {
                       'english': QuranDetails.englishSuras[currentIndex],
@@ -88,6 +103,19 @@ class _QuranTabState extends State<QuranTab> {
                       'index': currentIndex,
                     },
                   );
+                  QuranTab.recentIndexes.remove(currentIndex);
+                  QuranTab.recentIndexes.insert(0, currentIndex);
+                  List<String> mostRecentlyIndexes =
+                      QuranTab.recentIndexes
+                          .map((indx) => indx.toString())
+                          .toList();
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setStringList(
+                    'mostRecentlyIndexes',
+                    mostRecentlyIndexes,
+                  );
+                  setState(() {});
                 },
                 child: SuraItem(index: currentIndex),
               );
