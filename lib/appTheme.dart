@@ -90,6 +90,12 @@ class AppTheme {
         fontSize: 14,
         fontWeight: FontWeight.w700,
       ),
+
+      bodySmall: TextStyle(
+        fontSize: 14,
+        color: primary.withValues(alpha: 0.6),
+        fontWeight: FontWeight.w700,
+      )
     ),
   );
 }
