@@ -21,7 +21,6 @@ docs/
 .codex/
 .claude/
 .serena/
-devtools_options.yaml
 
 # IDEs
 *.iml
@@ -38,7 +37,6 @@ devtools_options.yaml
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-pubspec.lock
 
 # Build outputs
 /build/
@@ -56,5 +54,4 @@ android/app/*.keystore
 android/app/*.jks
 
 # iOS
-ios/Podfile.lock
 ios/.symlinks/
