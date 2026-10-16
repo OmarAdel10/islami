@@ -16,26 +16,26 @@ migrate_working_dir/
 *.md
 !README.md
 
-# Ignored folders
+# Project-specific docs and agent workspaces
 docs/
 .superpowers/
+.agents/
+.codex/
+.claude/
+.serena/
 erc/
 
 # Signing properties (contains sensitive credentials - never commit)
 key.properties
+android/key.properties
 
 # IntelliJ related
-*.iml
 *.ipr
 *.iws
 .idea/
+.vscode/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
+# Flutter/Dart/Pub
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
@@ -43,15 +43,21 @@ key.properties
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
+
+# Build outputs
 /build/
-
-# Symbolication related
+**/build/
 app.*.symbols
-
-# Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
+# Android
 /android/app/debug
 /android/app/profile
 /android/app/release
+android/key.properties
+android/app/upload-keystore.jks
+android/app/*.keystore
+android/app/*.jks
+
+# iOS
+ios/.symlinks/
