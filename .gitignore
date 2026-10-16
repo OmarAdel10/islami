@@ -12,6 +12,15 @@
 .swiftpm/
 migrate_working_dir/
 
+# Ignore all markdown files except README.md
+*.md
+!README.md
+
+# Ignored folders
+docs/
+.superpowers/
+erc/
+
 # IntelliJ related
 *.iml
 *.ipr
