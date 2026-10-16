@@ -3,24 +3,37 @@ import 'package:islami/Screens/home/tabs/Hadith/hadith_details.dart';
 import 'package:islami/appTheme.dart';
 import 'package:islami/features/hadith/data/models/hadith_model.dart';
 
-class HadithItem extends StatelessWidget {
+class HadithItem extends StatefulWidget {
   final HadithModel hadith;
 
   const HadithItem({super.key, required this.hadith});
+
+  @override
+  State<HadithItem> createState() => _HadithItemState();
+}
+
+class _HadithItemState extends State<HadithItem> {
+  bool _isPressed = false;
 
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     Size size = MediaQuery.sizeOf(context);
     return GestureDetector(
+      onTapDown: (_) => setState(() => _isPressed = true),
+      onTapUp: (_) => setState(() => _isPressed = false),
+      onTapCancel: () => setState(() => _isPressed = false),
       onTap: () {
         Navigator.of(
           context,
-        ).pushNamed(HadithDetails.routeName, arguments: hadith);
+        ).pushNamed(HadithDetails.routeName, arguments: widget.hadith);
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
         decoration: BoxDecoration(
-          color: AppTheme.primary,
+          color: _isPressed
+              ? AppTheme.primary.withValues(alpha: 0.8)
+              : AppTheme.primary,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -37,7 +50,7 @@ class HadithItem extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      hadith.title,
+                      widget.hadith.title,
                       textAlign: TextAlign.center,
                       style: textTheme.headlineSmall!.copyWith(
                         color: AppTheme.white,
@@ -67,14 +80,14 @@ class HadithItem extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   itemBuilder: (_, index) => Text(
-                    hadith.content[index],
+                    widget.hadith.content[index],
                     textAlign: TextAlign.center,
                     style: textTheme.titleMedium!.copyWith(
                       color: AppTheme.white,
                     ),
                   ),
                   separatorBuilder: (_, __) => SizedBox(height: 4),
-                  itemCount: hadith.content.length,
+                  itemCount: widget.hadith.content.length,
                 ),
               ),
             ),

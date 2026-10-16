@@ -9,7 +9,11 @@ class RadioItem extends StatefulWidget {
   final String radioNameText;
   final RadioReciter reciter;
 
-  RadioItem({required this.radioNameText, required this.reciter});
+  const RadioItem({
+    super.key,
+    required this.radioNameText,
+    required this.reciter,
+  });
 
   @override
   State<RadioItem> createState() => _RadioItemState();

@@ -78,7 +78,12 @@ class _RadioTabView extends StatelessWidget {
               ],
             ),
             SizedBox(height: 5),
-            Expanded(child: tabs[state.currentTabIndex]),
+            Expanded(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: tabs[state.currentTabIndex],
+              ),
+            ),
           ],
         );
       },
