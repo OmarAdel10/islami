@@ -13,7 +13,11 @@ class RadioTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => RadioCubit(),
+      create: (context) {
+        final cubit = RadioCubit();
+        cubit.loadReciters();
+        return cubit;
+      },
       child: const _RadioTabView(),
     );
   }

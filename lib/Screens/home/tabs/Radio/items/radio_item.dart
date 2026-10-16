@@ -1,22 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islami/appTheme.dart';
+import 'package:islami/features/radio/cubit/radio_cubit.dart';
+import 'package:islami/features/radio/data/models/radio_reciter.dart';
 
 class RadioItem extends StatefulWidget {
   final String radioNameText;
+  final RadioReciter reciter;
 
-  RadioItem({required this.radioNameText});
+  RadioItem({required this.radioNameText, required this.reciter});
 
   @override
   State<RadioItem> createState() => _RadioItemState();
 }
 
 class _RadioItemState extends State<RadioItem> {
-  bool isPlayTaped = false;
-  bool isSoundTaped = false;
+  late final int _firstSurah;
+
+  @override
+  void initState() {
+    super.initState();
+    _firstSurah = widget.reciter.surahs.isNotEmpty
+        ? widget.reciter.surahs.first
+        : 0;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<RadioCubit>();
+    final isPlaying =
+        cubit.state.isPlaying && cubit.state.currentSurahNumber == _firstSurah;
+
     Size size = MediaQuery.sizeOf(context);
     TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
@@ -38,43 +53,29 @@ class _RadioItemState extends State<RadioItem> {
           ),
           Positioned(
             bottom: 0,
-            child: isPlayTaped ? Image.asset('assets/images/played_radio_reciters_item_background.png') : Image.asset(
-              'assets/images/paused_radio_reciters_item_background.png',
-            ),
+            child: isPlaying
+                ? Image.asset(
+                    'assets/images/played_radio_reciters_item_background.png',
+                  )
+                : Image.asset(
+                    'assets/images/paused_radio_reciters_item_background.png',
+                  ),
           ),
-
           Positioned(
             bottom: 0,
             child: IconButton(
               iconSize: 44,
-              onPressed: () {
-                setState(() {
-                  isPlayTaped = !isPlayTaped;
-                });
+              onPressed: () async {
+                if (isPlaying) {
+                  await cubit.pause();
+                } else if (_firstSurah > 0) {
+                  await cubit.playSurah(_firstSurah);
+                }
               },
               icon: Icon(
-                isPlayTaped
+                isPlaying
                     ? CupertinoIcons.pause_fill
                     : CupertinoIcons.play_arrow_solid,
-                color: AppTheme.black,
-              ),
-            ),
-          ),
-
-          Positioned(
-            right: size.width * 0.2,
-            bottom: 0,
-            child: IconButton(
-              iconSize: 40,
-              onPressed: () {
-              setState(() {
-                isSoundTaped = !isSoundTaped;
-              });
-              },
-              icon: Icon(
-                isSoundTaped
-                    ? CupertinoIcons.speaker_slash_fill
-                    : CupertinoIcons.speaker_2_fill,
                 color: AppTheme.black,
               ),
             ),
