@@ -11,7 +11,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
   final showHome = prefs.getBool('showHome') ?? false;
-  await QuranTab.getMostRecently();
   runApp(MyApp(showHome: showHome));
 }
 
@@ -29,8 +28,9 @@ class MyApp extends StatelessWidget {
         SuraDetails.routeName: (_) => SuraDetails(),
         HadithDetails.routeName: (_) => HadithDetails(),
       },
-      initialRoute:
-          showHome ? HomeScreen.routeName : OnboardingScreen.routeName,
+      initialRoute: showHome
+          ? HomeScreen.routeName
+          : OnboardingScreen.routeName,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
