@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:islami/Screens/home/tabs/Hadith/hadith.dart';
 import 'package:islami/appTheme.dart';
+import 'package:islami/features/hadith/data/models/hadith_model.dart';
 
 class HadithDetails extends StatelessWidget {
   static const String routeName = '/hadithDetails';
+
+  const HadithDetails({super.key});
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     Size size = MediaQuery.sizeOf(context);
-    Hadith hadith = ModalRoute.of(context)!.settings.arguments as Hadith;
+    final HadithModel hadith =
+        ModalRoute.of(context)!.settings.arguments as HadithModel;
     return Scaffold(
-      appBar: AppBar(title: Text('Hadith ${hadith.num}')),
+      appBar: AppBar(title: Text('Hadith ${hadith.number}')),
       body: Column(
         children: [
           Padding(
@@ -24,12 +27,12 @@ class HadithDetails extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
                 Expanded(
-                      child: Text(
-                        hadith.title,
-                        textAlign: TextAlign.center,
-                        style: textTheme.headlineSmall,
-                      ),
-                    ),
+                  child: Text(
+                    hadith.title,
+                    textAlign: TextAlign.center,
+                    style: textTheme.headlineSmall,
+                  ),
+                ),
                 Image.asset(
                   'assets/images/sura_details_right.png',
                   height: size.height * 0.1,
@@ -42,16 +45,15 @@ class HadithDetails extends StatelessWidget {
           Expanded(
             child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              itemBuilder:
-                  (_, index) => Text(
-                    hadith.content[index],
-                    style: textTheme.titleLarge!.copyWith(
-                      color: AppTheme.primary,
-                      height: 2,
-                    ),
-                    textAlign: TextAlign.center,
-                    textDirection: TextDirection.rtl,
-                  ),
+              itemBuilder: (_, index) => Text(
+                hadith.content[index],
+                style: textTheme.titleLarge!.copyWith(
+                  color: AppTheme.primary,
+                  height: 2,
+                ),
+                textAlign: TextAlign.center,
+                textDirection: TextDirection.rtl,
+              ),
               itemCount: hadith.content.length,
               separatorBuilder: (_, __) => SizedBox(height: 12),
             ),
