@@ -21,6 +21,9 @@ docs/
 .superpowers/
 erc/
 
+# Signing properties (contains sensitive credentials - never commit)
+key.properties
+
 # IntelliJ related
 *.iml
 *.ipr
