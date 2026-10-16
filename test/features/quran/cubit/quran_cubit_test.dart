@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:islami/features/quran/cubit/quran_cubit.dart';
-import 'package:islami/features/quran/cubit/quran_state.dart';
 
 bool _matches(int index, String query) {
   final names = ['alpha', 'beta', 'gamma'];

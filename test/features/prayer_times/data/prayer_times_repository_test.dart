@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:http/testing.dart';
 import 'package:islami/features/prayer_times/data/prayer_times_repository.dart';
 
 void main() {
