@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.11.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -40,6 +40,9 @@ dependencies:
   flutter_svg: ^2.2.0
   auto_size_text: ^3.0.0
   carousel_slider: ^5.1.1
+  flutter_bloc: ^9.1.1
+  bloc: ^9.2.1
+  equatable: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +72,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/text/
+    - assets/data/hadith/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
