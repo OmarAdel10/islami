@@ -5,6 +5,9 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+import java.util.Properties
+import java.io.FileInputStream
+
 android {
     namespace = "com.islami.app"
     compileSdk = flutter.compileSdkVersion
@@ -31,8 +34,8 @@ android {
         create("release") {
             val keyPropsFile = rootProject.file("key.properties")
             if (keyPropsFile.exists()) {
-                val props = java.util.Properties()
-                props.load(java.io.FileInputStream(keyPropsFile))
+                val props = Properties()
+                props.load(FileInputStream(keyPropsFile))
                 storeFile = file(props.getProperty("storeFile", ""))
                 storePassword = props.getProperty("storePassword", "")
                 keyAlias = props.getProperty("keyAlias", "")
@@ -44,8 +47,8 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("release");
-            minifyEnabled = true;
-            shrinkResources = true;
+            isMinifyEnabled = true;
+            isShrinkResources = true;
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro");
         }
     }
