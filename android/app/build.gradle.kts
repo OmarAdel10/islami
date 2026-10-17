@@ -18,7 +18,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
+    compilerOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
@@ -47,8 +47,8 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("release");
-            minifyEnabled = true;
-            shrinkResources = true;
+            minifyEnabled.set(true);
+            shrinkResources.set(true);
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro");
         }
     }
