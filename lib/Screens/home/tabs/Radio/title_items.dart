@@ -17,14 +17,13 @@ class TitleItems extends StatelessWidget {
       child: Center(
         child: Text(
           text,
-          style:
-              isselected
-                  ? Theme.of(
-                    context,
-                  ).textTheme.titleMedium!.copyWith(color: AppTheme.black)
-                  : Theme.of(context).textTheme.titleMedium!.copyWith(
-                    fontWeight: FontWeight.w400,
-                  ),
+          style: isselected
+              ? Theme.of(
+                  context,
+                ).textTheme.titleMedium!.copyWith(color: AppTheme.black)
+              : Theme.of(
+                  context,
+                ).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w400),
         ),
       ),
     );

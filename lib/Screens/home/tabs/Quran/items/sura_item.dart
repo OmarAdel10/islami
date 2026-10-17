@@ -15,9 +15,12 @@ class SuraItem extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              index >= 99 
-              ? Text('${index + 1}', style: textTheme.titleLarge!.copyWith(fontSize: 16))
-              : Text('${index + 1}', style: textTheme.titleLarge),
+              index >= 99
+                  ? Text(
+                      '${index + 1}',
+                      style: textTheme.titleLarge!.copyWith(fontSize: 16),
+                    )
+                  : Text('${index + 1}', style: textTheme.titleLarge),
               Image.asset(
                 'assets/images/sura_number_frame.png',
                 width: 52,
@@ -41,10 +44,7 @@ class SuraItem extends StatelessWidget {
             ],
           ),
           Spacer(),
-          Text(
-                QuranDetails.arabicSuras[index],
-                style: textTheme.titleLarge,
-              ),
+          Text(QuranDetails.arabicSuras[index], style: textTheme.titleLarge),
         ],
       ),
     );

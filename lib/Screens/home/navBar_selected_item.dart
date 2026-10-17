@@ -6,7 +6,7 @@ class NavBarSelectedItem extends StatelessWidget {
   final String iconName;
 
   const NavBarSelectedItem({required this.iconName});
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +15,8 @@ class NavBarSelectedItem extends StatelessWidget {
         color: AppTheme.black.withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(66),
       ),
-      child: SvgPicture.asset('assets/icons/$iconName.svg',
+      child: SvgPicture.asset(
+        'assets/icons/$iconName.svg',
         width: 24,
         height: 24,
         fit: BoxFit.fill,

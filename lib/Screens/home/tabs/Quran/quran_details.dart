@@ -1,4 +1,3 @@
-
 class QuranDetails {
   static List<String> arabicSuras = [
     "الفاتحه",
@@ -350,6 +349,4 @@ class QuranDetails {
     '5',
     '6',
   ];
-
-
 }

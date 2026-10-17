@@ -64,32 +64,33 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         items: const [
-        BottomNavigationBarItem(
-          icon: NavbarUnselectedItem(iconName: 'quran_icon'),
-          activeIcon: NavBarSelectedItem(iconName: 'quran_icon'),
-          label: 'Quran',
-        ),
-        BottomNavigationBarItem(
-          icon: NavbarUnselectedItem(iconName: 'hadith_icon'),
-          activeIcon: NavBarSelectedItem(iconName: 'hadith_icon'),
-          label: 'Hadith',
-        ),
-        BottomNavigationBarItem(
-          icon: NavbarUnselectedItem(iconName: 'sebha_icon'),
-          activeIcon: NavBarSelectedItem(iconName: 'sebha_icon'),
-          label: 'Sebha',
-        ),
-        BottomNavigationBarItem(
-          icon: NavbarUnselectedItem(iconName: 'radio_icon'),
-          activeIcon: NavBarSelectedItem(iconName: 'radio_icon'),
-          label: 'Radio',
-        ),
-        BottomNavigationBarItem(
-          icon: NavbarUnselectedItem(iconName: 'time_icon'),
-          activeIcon: NavBarSelectedItem(iconName: 'time_icon'),
-          label: 'Time',
-        ),
-      ]),
+          BottomNavigationBarItem(
+            icon: NavbarUnselectedItem(iconName: 'quran_icon'),
+            activeIcon: NavBarSelectedItem(iconName: 'quran_icon'),
+            label: 'Quran',
+          ),
+          BottomNavigationBarItem(
+            icon: NavbarUnselectedItem(iconName: 'hadith_icon'),
+            activeIcon: NavBarSelectedItem(iconName: 'hadith_icon'),
+            label: 'Hadith',
+          ),
+          BottomNavigationBarItem(
+            icon: NavbarUnselectedItem(iconName: 'sebha_icon'),
+            activeIcon: NavBarSelectedItem(iconName: 'sebha_icon'),
+            label: 'Sebha',
+          ),
+          BottomNavigationBarItem(
+            icon: NavbarUnselectedItem(iconName: 'radio_icon'),
+            activeIcon: NavBarSelectedItem(iconName: 'radio_icon'),
+            label: 'Radio',
+          ),
+          BottomNavigationBarItem(
+            icon: NavbarUnselectedItem(iconName: 'time_icon'),
+            activeIcon: NavBarSelectedItem(iconName: 'time_icon'),
+            label: 'Time',
+          ),
+        ],
+      ),
     );
   }
 }

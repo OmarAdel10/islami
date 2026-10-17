@@ -83,21 +83,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _currentPage == 0
-                ? SizedBox(width: MediaQuery.sizeOf(context).width * 0.2,)
+                ? SizedBox(width: MediaQuery.sizeOf(context).width * 0.2)
                 : TextButton(
-                  onPressed: () {
-                    _controller.previousPage(
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  child: Text(
-                    'Back',
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: AppTheme.primary,
+                    onPressed: () {
+                      _controller.previousPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                    child: Text(
+                      'Back',
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: AppTheme.primary,
+                      ),
                     ),
                   ),
-                ),
 
             SmoothPageIndicator(
               controller: _controller,
@@ -117,7 +117,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
             _currentPage == onBoarding.images.length - 1
                 ? TextButton(
-                    onPressed: () async{
+                    onPressed: () async {
                       final prefs = await SharedPreferences.getInstance();
                       await prefs.setBool('showHome', true);
                       Navigator.pushReplacementNamed(context, '/home');
@@ -134,15 +134,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       _controller.nextPage(
                         duration: Duration(milliseconds: 300),
                         curve: Curves.easeInOut,
-                );
-              },
-              child: Text(
-                'Next',
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  color: AppTheme.primary,
-                ),
-              ),
-            ),
+                      );
+                    },
+                    child: Text(
+                      'Next',
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: AppTheme.primary,
+                      ),
+                    ),
+                  ),
           ],
         ),
       ),

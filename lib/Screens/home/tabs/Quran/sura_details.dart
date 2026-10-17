@@ -59,21 +59,20 @@ class _SuraDetailsState extends State<SuraDetails> {
           ),
 
           Expanded(
-            child:
-                mergedAyat.isEmpty
-                    ? LoadingIndicator()
-                    : SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(
-                        mergedAyat,
-                        style: theme.textTheme.titleLarge!.copyWith(
-                          color: AppTheme.primary,
-                          height: 2,
-                        ),
-                        textAlign: TextAlign.center,
-                        textDirection: TextDirection.rtl,
+            child: mergedAyat.isEmpty
+                ? LoadingIndicator()
+                : SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      mergedAyat,
+                      style: theme.textTheme.titleLarge!.copyWith(
+                        color: AppTheme.primary,
+                        height: 2,
                       ),
+                      textAlign: TextAlign.center,
+                      textDirection: TextDirection.rtl,
                     ),
+                  ),
           ),
 
           // Expanded(

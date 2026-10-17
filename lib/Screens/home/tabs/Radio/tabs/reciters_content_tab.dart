@@ -13,7 +13,8 @@ class RecitersContentTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       padding: EdgeInsets.all(20),
-      itemBuilder: (_, index) => RecitersItem(recitersNameText: reciters[index],),
+      itemBuilder: (_, index) =>
+          RecitersItem(recitersNameText: reciters[index]),
       itemCount: reciters.length,
       separatorBuilder: (context, index) => Divider(color: Colors.transparent),
     );

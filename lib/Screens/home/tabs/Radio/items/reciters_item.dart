@@ -37,9 +37,13 @@ class _RecitersItemState extends State<RecitersItem> {
           ),
           Positioned(
             bottom: 0,
-            child: isPlayTaped ? Image.asset('assets/images/played_radio_reciters_item_background.png') : Image.asset(
-              'assets/images/paused_radio_reciters_item_background.png',
-            ),
+            child: isPlayTaped
+                ? Image.asset(
+                    'assets/images/played_radio_reciters_item_background.png',
+                  )
+                : Image.asset(
+                    'assets/images/paused_radio_reciters_item_background.png',
+                  ),
           ),
 
           Positioned(
@@ -66,9 +70,9 @@ class _RecitersItemState extends State<RecitersItem> {
             child: IconButton(
               iconSize: 40,
               onPressed: () {
-              setState(() {
-                isSoundTaped = !isSoundTaped;
-              });
+                setState(() {
+                  isSoundTaped = !isSoundTaped;
+                });
               },
               icon: Icon(
                 isSoundTaped
