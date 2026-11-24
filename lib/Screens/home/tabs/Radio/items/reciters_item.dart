@@ -1,23 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islami/appTheme.dart';
+import 'package:islami/features/radio/cubit/radio_cubit.dart';
+import 'package:islami/features/radio/data/models/radio_reciter.dart';
 
-class RecitersItem extends StatefulWidget {
-  final String recitersNameText;
-  const RecitersItem({super.key, required this.recitersNameText});
+class RecitersItem extends StatelessWidget {
+  final RadioReciter reciter;
 
-  @override
-  State<RecitersItem> createState() => _RecitersItemState();
-}
-
-class _RecitersItemState extends State<RecitersItem> {
-  bool isPlayTaped = false;
-  bool isSoundTaped = false;
+  const RecitersItem({super.key, required this.reciter});
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.sizeOf(context);
-    TextTheme textTheme = Theme.of(context).textTheme;
+    final cubit = context.read<RadioCubit>();
+    final isPlaying =
+        cubit.state.isPlaying && cubit.state.selectedReciter?.id == reciter.id;
+
+    final size = MediaQuery.sizeOf(context);
+    final textTheme = Theme.of(context).textTheme;
+
     return Container(
       height: size.height * 0.17,
       width: double.infinity,
@@ -31,13 +32,13 @@ class _RecitersItemState extends State<RecitersItem> {
           Positioned(
             top: size.height * 0.03,
             child: Text(
-              widget.recitersNameText,
+              reciter.name,
               style: textTheme.titleLarge!.copyWith(color: AppTheme.black),
             ),
           ),
           Positioned(
             bottom: 0,
-            child: isPlayTaped
+            child: isPlaying
                 ? Image.asset(
                     'assets/images/played_radio_reciters_item_background.png',
                   )
@@ -45,39 +46,27 @@ class _RecitersItemState extends State<RecitersItem> {
                     'assets/images/paused_radio_reciters_item_background.png',
                   ),
           ),
-
           Positioned(
             bottom: 0,
             child: IconButton(
               iconSize: 44,
-              onPressed: () {
-                setState(() {
-                  isPlayTaped = !isPlayTaped;
-                });
+              onPressed: () async {
+                if (isPlaying) {
+                  await cubit.pause();
+                } else {
+                  cubit.selectReciter(reciter);
+                  final firstSurah = reciter.surahs.isNotEmpty
+                      ? reciter.surahs.first
+                      : 0;
+                  if (firstSurah > 0) {
+                    await cubit.playSurah(firstSurah);
+                  }
+                }
               },
               icon: Icon(
-                isPlayTaped
+                isPlaying
                     ? CupertinoIcons.pause_fill
                     : CupertinoIcons.play_arrow_solid,
-                color: AppTheme.black,
-              ),
-            ),
-          ),
-
-          Positioned(
-            right: size.width * 0.2,
-            bottom: 0,
-            child: IconButton(
-              iconSize: 40,
-              onPressed: () {
-                setState(() {
-                  isSoundTaped = !isSoundTaped;
-                });
-              },
-              icon: Icon(
-                isSoundTaped
-                    ? CupertinoIcons.speaker_slash_fill
-                    : CupertinoIcons.speaker_2_fill,
                 color: AppTheme.black,
               ),
             ),

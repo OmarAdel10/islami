@@ -11,8 +11,9 @@ class RadioCubit extends Cubit<RadioState> {
     _audioPlayerFactory = factory;
   }
 
-  RadioCubit()
-    : _audioPlayer = _audioPlayerFactory(),
+  RadioCubit({RadioRepository? repository})
+    : _repository = repository ?? RadioRepository(),
+      _audioPlayer = _audioPlayerFactory(),
       super(const RadioState()) {
     _audioPlayer.playerStateStream.listen((playerState) {
       if (playerState.processingState == ProcessingState.completed) {
@@ -29,6 +30,8 @@ class RadioCubit extends Cubit<RadioState> {
     });
   }
 
+  final RadioRepository _repository;
+
   final AudioPlayer _audioPlayer;
 
   AudioPlayer get audioPlayer => _audioPlayer;
@@ -40,8 +43,7 @@ class RadioCubit extends Cubit<RadioState> {
   Future<void> loadReciters() async {
     emit(state.copyWith(isLoading: true, error: null));
     try {
-      final repository = RadioRepository();
-      final reciters = await repository.fetchReciters();
+      final reciters = await _repository.fetchReciters();
       emit(state.copyWith(reciters: reciters, isLoading: false, error: null));
     } catch (e) {
       emit(state.copyWith(isLoading: false, error: e.toString()));
