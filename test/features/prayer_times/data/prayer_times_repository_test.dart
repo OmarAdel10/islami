@@ -8,7 +8,7 @@ class FakeLocationService implements LocationService {
   LocationPermission? requestResult;
   bool serviceEnabled;
   Position? position;
-  bool throwOnPosition = false;
+  Object? throwOnPosition;
 
   FakeLocationService({
     this.permission = LocationPermission.whileInUse,
@@ -29,8 +29,8 @@ class FakeLocationService implements LocationService {
 
   @override
   Future<Position> getCurrentPosition() async {
-    if (throwOnPosition) {
-      throw const PrayerTimesLocationException('Location unavailable');
+    if (throwOnPosition != null) {
+      throw throwOnPosition!;
     }
     return position ??
         Position(
@@ -118,7 +118,10 @@ void main() {
   test(
     'fetchPrayerTimes surfaces a position failure as a location exception',
     () async {
-      final service = FakeLocationService()..throwOnPosition = true;
+      final service = FakeLocationService()
+        ..throwOnPosition = const PrayerTimesLocationException(
+          'Location unavailable',
+        );
       final repository = PrayerTimesRepository(locationService: service);
 
       expect(
@@ -127,4 +130,20 @@ void main() {
       );
     },
   );
+
+  test('fetchPrayerTimes converts an unrelated position failure', () async {
+    final service = FakeLocationService()..throwOnPosition = StateError('boom');
+    final repository = PrayerTimesRepository(locationService: service);
+
+    expect(
+      repository.fetchPrayerTimes(),
+      throwsA(
+        isA<PrayerTimesLocationException>().having(
+          (e) => e.message,
+          'message',
+          'Unable to determine your current location.',
+        ),
+      ),
+    );
+  });
 }
