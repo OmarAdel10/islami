@@ -4,7 +4,7 @@ import 'package:islami/appTheme.dart';
 
 class MostRecentlyItem extends StatelessWidget {
   final int index;
-  const MostRecentlyItem({required this.index});
+  const MostRecentlyItem({super.key, required this.index});
   @override
   Widget build(BuildContext context) {
     TextTheme texttheme = Theme.of(context).textTheme;

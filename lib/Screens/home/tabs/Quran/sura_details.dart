@@ -6,6 +6,8 @@ import 'package:islami/widgets/loading_indicator.dart';
 class SuraDetails extends StatefulWidget {
   static const String routeName = '/suraDetails';
 
+  const SuraDetails({super.key});
+
   @override
   State<SuraDetails> createState() => _SuraDetailsState();
 }
@@ -108,11 +110,11 @@ class _SuraDetailsState extends State<SuraDetails> {
   String mergedAyat = '';
 
   Future<void> loadSura() async {
-    final SuraAyatContent = await rootBundle.loadString(
+    final suraAyatContent = await rootBundle.loadString(
       'assets/text/${index + 1}.txt',
     );
 
-    final rawAyat = SuraAyatContent.split('\r\n');
+    final rawAyat = suraAyatContent.split('\r\n');
 
     for (int i = 0; i < rawAyat.length; i++) {
       mergedAyat += '${rawAyat[i]} \uFD3F${i + 1}\uFD3E ';
@@ -122,10 +124,10 @@ class _SuraDetailsState extends State<SuraDetails> {
   }
 
   // Future<void> loadSura() async {
-  //   String SuraAyatContent = await rootBundle.loadString(
+  //   String suraAyatContent = await rootBundle.loadString(
   //     'assets/text/${index + 1}.txt',
   //   );
-  //   ayat = SuraAyatContent.split('\r\n');
+  //   ayat = suraAyatContent.split('\r\n');
   //   setState(() {});
   // }
 }
