@@ -6,6 +6,7 @@ class HadithModel extends Equatable {
   final String title;
   final List<String> content;
   final List<String> categories;
+  final String source;
 
   const HadithModel({
     required this.id,
@@ -13,8 +14,9 @@ class HadithModel extends Equatable {
     required this.title,
     required this.content,
     required this.categories,
+    this.source = '',
   });
 
   @override
-  List<Object?> get props => [id, number, title, content, categories];
+  List<Object?> get props => [id, number, title, content, categories, source];
 }

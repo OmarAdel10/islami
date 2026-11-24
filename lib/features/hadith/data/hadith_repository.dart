@@ -18,6 +18,7 @@ class HadithRepository {
             title: json['title'] as String,
             content: List<String>.from(json['content'] as List<dynamic>),
             categories: List<String>.from(json['categories'] as List<dynamic>),
+            source: json['source'] as String? ?? '',
           ),
         )
         .toList();

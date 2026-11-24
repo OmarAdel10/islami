@@ -7,7 +7,7 @@ Islami is a premium, minimalist Islamic companion app built with Flutter. It pro
 | Tab | Description |
 |-----|-------------|
 | Quran | Browse suras, search by name, and track most recently read suras |
-| Hadith | Read 70 structured hadiths with category filtering (general, morning, evening) |
+| Hadith | Read 50 structured hadiths with source attribution and category filtering (general, morning, evening) |
 | Radio | Stream Quran recitation from multiple reciters via mp3quran API |
 | Sebha | Tasbeeh counter with haptic rotation animation |
 | Time | Prayer times (Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha, Qibla) based on your location |
