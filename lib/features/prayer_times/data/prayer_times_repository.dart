@@ -1,14 +1,42 @@
 import 'package:adhan_dart/adhan_dart.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:islami/features/prayer_times/data/location_service.dart';
 import 'package:islami/features/prayer_times/data/models/prayer_times.dart';
 
 class PrayerTimesRepository {
+  final LocationService _locationService;
+
+  PrayerTimesRepository({LocationService? locationService})
+    : _locationService = locationService ?? const GeolocatorLocationService();
+
   Future<PrayerTimesModel> fetchPrayerTimes() async {
-    final position = await Geolocator.getCurrentPosition(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.medium,
-      ),
-    );
+    if (!await _locationService.isLocationServiceEnabled()) {
+      throw const PrayerTimesLocationException(
+        'Location services are turned off on this device.',
+      );
+    }
+
+    var permission = await _locationService.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await _locationService.requestPermission();
+    }
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      throw const PrayerTimesLocationException(
+        'Location permission is required to calculate prayer times.',
+      );
+    }
+
+    final Position position;
+    try {
+      position = await _locationService.getCurrentPosition();
+    } on PrayerTimesLocationException {
+      rethrow;
+    } catch (_) {
+      throw const PrayerTimesLocationException(
+        'Unable to determine your current location.',
+      );
+    }
 
     final calculationParameters =
         CalculationMethodParameters.muslimWorldLeague();
