@@ -15,12 +15,20 @@
 -keep class com.baseflow.geolocator.** { *; }
 -keep class com.baseflow.locationapi.** { *; }
 
-# Application classes
--keep class com.example.islami.** { *; }
--keepnames class com.example.islami.** { *; }
+# Application classes — must match the real applicationId/namespace.
+# `com.example.islami` was the package before the app-id rename in b9b8f80;
+# a keep rule for the old package keeps nothing and R8 strips app classes.
+-keep class com.islami.app.** { *; }
+-keepnames class com.islami.app.** { *; }
 
 # Preserve enum values
 -keepclassmembers enum * {
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
+
+# Play Core — Flutter's engine references these for deferred-component support
+# that this app never ships. R8 treats the absent classes as errors and fails
+# :app:minifyReleaseWithR8 without this suppression. Collapsing the wildcard
+# keeps the rule stable across SDK bumps.
+-dontwarn com.google.android.play.core.**
