@@ -4,7 +4,7 @@ import 'package:islami/appTheme.dart';
 
 class RecitersItem extends StatefulWidget {
   final String recitersNameText;
-  RecitersItem({required this.recitersNameText});
+  const RecitersItem({super.key, required this.recitersNameText});
 
   @override
   State<RecitersItem> createState() => _RecitersItemState();

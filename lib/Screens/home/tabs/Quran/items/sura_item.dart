@@ -3,7 +3,7 @@ import 'package:islami/Screens/home/tabs/Quran/quran_details.dart';
 
 class SuraItem extends StatelessWidget {
   final int index;
-  SuraItem({required this.index});
+  const SuraItem({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {

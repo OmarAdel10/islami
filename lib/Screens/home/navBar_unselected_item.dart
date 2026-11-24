@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 class NavbarUnselectedItem extends StatelessWidget {
   final String iconName;
 
-  const NavbarUnselectedItem({required this.iconName});
+  const NavbarUnselectedItem({super.key, required this.iconName});
 
   @override
   Widget build(BuildContext context) {

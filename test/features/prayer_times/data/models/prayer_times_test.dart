@@ -31,9 +31,7 @@ void main() {
 
   test('sunrise getter works when present', () {
     final withSunrise = PrayerTimesModel(
-      times: [
-        const PrayerTime(name: 'Sunrise', time: '06:15'),
-      ],
+      times: [const PrayerTime(name: 'Sunrise', time: '06:15')],
       date: DateTime(2026, 10, 16),
     );
     expect(withSunrise.sunrise?.time, '06:15');
