@@ -41,7 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 });
               },
               controller: _controller,
-              itemCount: onBoarding.images.length,
+              itemCount: OnBoarding.images.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -49,17 +49,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Image.asset(
-                        onBoarding.images[index],
+                        OnBoarding.images[index],
                         height: MediaQuery.of(context).size.height * 0.4,
                       ),
 
                       Text(
-                        onBoarding.titles[index],
+                        OnBoarding.titles[index],
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
 
                       Text(
-                        onBoarding.subtitles[index],
+                        OnBoarding.subtitles[index],
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: AppTheme.primary,
                         ),
@@ -101,7 +101,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
             SmoothPageIndicator(
               controller: _controller,
-              count: onBoarding.images.length,
+              count: OnBoarding.images.length,
               effect: ExpandingDotsEffect(
                 dotColor: Color(0xFF707070),
                 activeDotColor: AppTheme.primary,
@@ -115,11 +115,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
 
-            _currentPage == onBoarding.images.length - 1
+            _currentPage == OnBoarding.images.length - 1
                 ? TextButton(
                     onPressed: () async {
                       final prefs = await SharedPreferences.getInstance();
                       await prefs.setBool('showHome', true);
+                      if (!context.mounted) return;
                       Navigator.pushReplacementNamed(context, '/home');
                     },
                     child: Text(

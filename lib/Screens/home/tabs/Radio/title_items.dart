@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:islami/appTheme.dart';
 
 class TitleItems extends StatelessWidget {
-  bool isselected;
-  String text;
+  final bool isselected;
+  final String text;
 
-  TitleItems({required this.isselected, required this.text});
+  const TitleItems({super.key, required this.isselected, required this.text});
   @override
   Widget build(BuildContext context) {
     return Container(

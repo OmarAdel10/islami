@@ -1,4 +1,4 @@
-class onBoarding {
+class OnBoarding {
   static const String onBoardingKey = "onBoarding";
 
   static List<String> images = [
